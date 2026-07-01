@@ -1,0 +1,271 @@
+export const EXAMS = {
+  tgpsc1: {
+    label: "TGPSC Group 1",
+    pattern: "Prelims: 2 papers (General Studies 150 + General Abilities 150), objective, 2.5 hrs each, −⅓ negative, screening only. Mains: 6 descriptive papers (150 each = 900 marks) + qualifying General English. Final merit from mains.",
+    stages: ["Prelims Paper I — General Studies", "Prelims Paper II — General Abilities / Mental Ability", "Mains I — General Essay", "Mains II — History, Culture & Geography", "Mains III — Indian Constitution, Polity & Governance", "Mains IV — Economy & Development", "Mains V — Telangana Movement & State Formation", "Mains VI — Science, Technology & Data Interpretation", "Qualifying — General English"]
+  },
+  tgpsc2: {
+    label: "TGPSC Group 2",
+    pattern: "4 objective papers, 150 marks each (600 total), CBRT, 2.5 hrs each. Negative marking 0.25. Stage II adds 75 marks. Telangana Movement (Paper IV) is the most scoring & rank-deciding.",
+    stages: ["Paper I — General Studies & General Abilities", "Paper II — History, Polity & Society (India + Telangana)", "Paper III — Economy & Development (India + Telangana)", "Paper IV — Telangana Movement & State Formation"]
+  },
+  tgpsc3: {
+    label: "TGPSC Group 3",
+    pattern: "Objective. Paper I — General Studies & General Abilities. Paper II — subject/degree level as per post. 150 marks each. Telangana focus throughout.",
+    stages: ["Paper I — General Studies & General Abilities", "Paper II — Concerned subject (degree level) as per post notification"]
+  },
+  ssc: {
+    label: "SSC CGL / CHSL",
+    pattern: "CGL Tier 1: 100 Qs · 200 marks · 60 min (Reasoning 25, GK 25, Quant 25, English 25). −0.5 negative. Tier 2: Quant+English+Stats/Finance. CHSL is 10+2 level, similar 4 sections.",
+    stages: ["Tier 1 — General Intelligence & Reasoning", "Tier 1 — General Awareness", "Tier 1 — Quantitative Aptitude", "Tier 1 — English Comprehension", "Tier 2 — Advanced Quant + English + Statistics"]
+  }
+};
+
+export const SUBJECTS = [
+  { id: "history", name: "History & Culture", accent: "#c25a3a", exam: ["tgpsc1", "tgpsc2", "tgpsc3", "ssc"], blurb: "Ancient, Medieval, Modern India + Telangana heritage.", tags: ["Prelims", "Mains", "GK"] },
+  { id: "biology", name: "Biology", accent: "#2f7d54", exam: ["tgpsc1", "tgpsc2", "tgpsc3", "ssc"], blurb: "Cell, human body, genetics, plants, diseases.", tags: ["Gen Science"] },
+  { id: "polity", name: "Polity & Constitution", accent: "#3a6ea5", exam: ["tgpsc1", "tgpsc2", "tgpsc3", "ssc"], blurb: "Constitution, rights, Parliament, judiciary, governance.", tags: ["Mains", "GK"] },
+  { id: "geography", name: "Geography", accent: "#8a6d3b", exam: ["tgpsc1", "tgpsc2", "tgpsc3", "ssc"], blurb: "Physical, Indian & Telangana geography, rivers, climate.", tags: ["Prelims", "Mains"] },
+  { id: "economy", name: "Economy", accent: "#b8862f", exam: ["tgpsc1", "tgpsc2", "tgpsc3", "ssc"], blurb: "Basics, budget, banking, planning, Telangana schemes.", tags: ["Mains", "GK"] },
+  { id: "telangana", name: "Telangana Movement", accent: "#7a3b6a", exam: ["tgpsc1", "tgpsc2", "tgpsc3"], blurb: "Statehood struggle 1948–2014, phases, GO 610, leaders.", tags: ["Rank-decider", "State"] },
+  { id: "polephys", name: "Physics", accent: "#2d5248", exam: ["tgpsc1", "tgpsc2", "tgpsc3", "ssc"], blurb: "Motion, force, light, sound, electricity, heat.", tags: ["Gen Science"] },
+  { id: "chemistry", name: "Chemistry", accent: "#a0522d", exam: ["tgpsc1", "tgpsc2", "tgpsc3", "ssc"], blurb: "Matter, atoms, periodic table, acids-bases, everyday chemistry.", tags: ["Gen Science"] },
+  { id: "reasoning", name: "Reasoning & Mental Ability", accent: "#555", exam: ["tgpsc1", "tgpsc2", "tgpsc3", "ssc"], blurb: "Series, coding, analogies, syllogism, puzzles.", tags: ["Prelims", "SSC"] },
+  { id: "quant", name: "Quantitative Aptitude", accent: "#8a4b2d", exam: ["ssc", "tgpsc1", "tgpsc2", "tgpsc3"], blurb: "Number system, %, ratio, time-speed, geometry, DI.", tags: ["SSC", "Data"] },
+  { id: "english", name: "English", accent: "#4a5d6b", exam: ["ssc", "tgpsc1", "tgpsc2", "tgpsc3"], blurb: "Grammar, vocab, comprehension, error spotting.", tags: ["Qualifying", "SSC"] },
+  { id: "current", name: "Current Affairs", accent: "#c0392b", exam: ["tgpsc1", "tgpsc2", "tgpsc3", "ssc"], blurb: "National, international & Telangana events (12–18 months).", tags: ["Prelims", "GK"] }
+];
+
+export const SYLLABUS = {
+  history: ["Indus Valley Civilisation & Vedic age", "Mauryan & Gupta empires", "Delhi Sultanate & Mughal empire", "Bhakti & Sufi movements", "1857 revolt & freedom struggle", "Gandhian era & national movement", "Kakatiya, Qutb Shahi & Asaf Jahi (Telangana)", "Art, architecture, temples, festivals of Telangana"],
+  biology: ["Cell structure & organelles", "Tissues & organ systems", "Digestive, respiratory, circulatory systems", "Nervous & endocrine systems", "Genetics & DNA basics", "Nutrition, vitamins & deficiency diseases", "Plant physiology & photosynthesis", "Diseases: bacterial, viral, vector-borne"],
+  polity: ["Making of Constitution & Preamble", "Fundamental Rights, Duties & DPSP", "Union & State legislatures", "Executive: President, PM, Governor, CM", "Judiciary & judicial review", "Panchayati Raj & local governance", "Constitutional & statutory bodies", "Amendments & federalism"],
+  geography: ["Solar system & earth's structure", "Atmosphere, climate & monsoon", "Indian physiography & drainage", "Rivers & irrigation projects of Telangana", "Soils, minerals & natural resources", "Population & urbanisation", "Agriculture & cropping patterns", "Disaster management"],
+  economy: ["GDP, inflation, fiscal & monetary terms", "Planning & NITI Aayog", "Banking, RBI & financial system", "Union & State budgets", "Agriculture & rural economy", "Telangana schemes (Rythu Bandhu, Dalit Bandhu, etc.)", "Poverty, unemployment & HDI", "Infrastructure & industry"],
+  telangana: ["Hyderabad State & 1948 Police Action", "Gentlemen's Agreement 1956 & safeguards", "Idealogical phase (1952-1969), Mulki rules", "1969 agitation & Jai Telangana", "GO 610 & Jayabharat Reddy committee", "Mobilisation phase (1971-1990)", "TRS & movement (2001-2014)", "Formation of Telangana, 2 June 2014"],
+  polephys: ["Motion & laws of motion", "Work, energy, power", "Light, reflection & refraction", "Sound & waves", "Electricity & magnetism", "Heat & thermodynamics", "Units & measurement", "Modern & nuclear physics basics"],
+  chemistry: ["Matter & its states", "Atomic structure", "Periodic table & classification", "Chemical bonding & reactions", "Acids, bases & salts", "Metals & non-metals", "Carbon & everyday chemistry", "Environmental chemistry"],
+  reasoning: ["Number & letter series", "Coding-decoding", "Analogy & classification", "Blood relations & direction", "Syllogism", "Seating arrangement & puzzles", "Clocks, calendars", "Non-verbal reasoning"],
+  quant: ["Number system & simplification", "Percentage, profit & loss", "Ratio, proportion & averages", "Time, speed, distance & work", "Simple & compound interest", "Algebra & mensuration", "Geometry & trigonometry", "Data interpretation"],
+  english: ["Parts of speech & tenses", "Subject-verb agreement", "Error spotting & sentence improvement", "Synonyms, antonyms, idioms", "Cloze test & para jumbles", "Reading comprehension", "Active-passive & direct-indirect", "One-word substitution"],
+  current: ["National affairs & govt schemes", "International relations & summits", "Awards, sports & appointments", "Science & tech developments", "Telangana state news & budget", "Reports & indices", "Economy & banking updates", "Books, important days & obituaries"]
+};
+
+// Notes are stored as HTML strings (rendered via dangerouslySetInnerHTML — all static, authored content)
+export const NOTES = {
+  history: { kicker: "High Weightage · All tracks", title: "History & Cultural Heritage", html: `
+  <p>History rewards <b>timelines and connections</b>, not rote dates. Read each era as a story: who ruled, what changed, why it mattered.</p>
+  <div class="figbox"><svg viewBox="0 0 720 120" width="100%" xmlns="http://www.w3.org/2000/svg">
+   <line x1="20" y1="70" x2="700" y2="70" stroke="#c25a3a" stroke-width="3"/>
+   <circle cx="40" cy="70" r="6" fill="#b8862f"/><text x="40" y="52" font-size="11" text-anchor="middle" fill="#1e3a34" font-weight="700">Indus</text><text x="40" y="92" font-size="9.5" text-anchor="middle" fill="#4a4038">3300 BCE</text>
+   <circle cx="130" cy="70" r="6" fill="#b8862f"/><text x="130" y="52" font-size="11" text-anchor="middle" fill="#1e3a34" font-weight="700">Vedic</text><text x="130" y="92" font-size="9.5" text-anchor="middle" fill="#4a4038">1500 BCE</text>
+   <circle cx="220" cy="70" r="6" fill="#b8862f"/><text x="220" y="52" font-size="11" text-anchor="middle" fill="#1e3a34" font-weight="700">Maurya</text><text x="220" y="92" font-size="9.5" text-anchor="middle" fill="#4a4038">322 BCE</text>
+   <circle cx="310" cy="70" r="6" fill="#b8862f"/><text x="310" y="52" font-size="11" text-anchor="middle" fill="#1e3a34" font-weight="700">Gupta</text><text x="310" y="92" font-size="9.5" text-anchor="middle" fill="#4a4038">320 CE</text>
+   <circle cx="400" cy="70" r="6" fill="#b8862f"/><text x="400" y="52" font-size="11" text-anchor="middle" fill="#1e3a34" font-weight="700">Sultanate</text><text x="400" y="92" font-size="9.5" text-anchor="middle" fill="#4a4038">1206</text>
+   <circle cx="490" cy="70" r="6" fill="#b8862f"/><text x="490" y="52" font-size="11" text-anchor="middle" fill="#1e3a34" font-weight="700">Mughal</text><text x="490" y="92" font-size="9.5" text-anchor="middle" fill="#4a4038">1526</text>
+   <circle cx="580" cy="70" r="6" fill="#b8862f"/><text x="580" y="52" font-size="11" text-anchor="middle" fill="#1e3a34" font-weight="700">Revolt</text><text x="580" y="92" font-size="9.5" text-anchor="middle" fill="#4a4038">1857</text>
+   <circle cx="670" cy="70" r="6" fill="#b8862f"/><text x="670" y="52" font-size="11" text-anchor="middle" fill="#1e3a34" font-weight="700">Freedom</text><text x="670" y="92" font-size="9.5" text-anchor="middle" fill="#4a4038">1947</text>
+  </svg><div class="figcap">Anchor the timeline first, then fill gaps.</div></div>
+  <h3>1 · Indus Valley (c. 3300–1300 BCE)</h3>
+  <ul><li><b>Cities:</b> Harappa, Mohenjo-daro, Dholavira, Lothal (dockyard), Kalibangan.</li><li><b>Features:</b> grid planning, Great Bath, standardised bricks, drainage.</li><li>Trade with Mesopotamia; undeciphered script.</li></ul>
+  <div class="mnemonic"><b>Hook —</b> "<i>Dry Lands Have Many Kites</i>" → Dholavira, Lothal, Harappa, Mohenjo-daro, Kalibangan.</div>
+  <h3>2 · Mauryan Empire (322–185 BCE)</h3>
+  <ul><li>Chandragupta Maurya + Chanakya (Arthashastra).</li><li><b>Ashoka</b> — Kalinga war (261 BCE) → Buddhism, Dhamma edicts.</li><li>Sarnath Lion Capital → national emblem.</li></ul>
+  <h3>3 · Telangana Heritage</h3>
+  <ul><li><b>Kakatiyas</b> (Warangal) — Thousand Pillar Temple, Ramappa (UNESCO 2021), tank irrigation.</li><li><b>Qutb Shahis</b> — Hyderabad (1591), Charminar, Golconda.</li><li><b>Asaf Jahi (Nizams)</b> — Deccani culture; festivals Bathukamma, Bonalu.</li></ul>
+  <div class="mnemonic"><b>Ramappa —</b> the only temple in India named after its <i>sculptor</i>.</div>
+  <div class="callout"><b>Exam angle:</b> link Ashoka's edicts → Brahmi/Prakrit → national emblem; and Kakatiya → Ramappa → UNESCO.</div>` },
+
+  biology: { kicker: "General Science · Core", title: "Biology — The Living World", html: `
+  <p>Learn biology as <b>systems that keep a body alive</b>: structure → function → what breaks it (disease).</p>
+  <div class="figbox"><svg viewBox="0 0 420 210" width="100%" xmlns="http://www.w3.org/2000/svg">
+   <ellipse cx="210" cy="105" rx="180" ry="90" fill="#eaf5ee" stroke="#2f7d54" stroke-width="2.5"/>
+   <circle cx="210" cy="105" r="40" fill="#cdebd8" stroke="#2f7d54" stroke-width="2"/><circle cx="210" cy="105" r="14" fill="#2f7d54"/>
+   <ellipse cx="120" cy="80" rx="26" ry="12" fill="#bfe3cd" stroke="#2f7d54"/><ellipse cx="300" cy="130" rx="24" ry="11" fill="#bfe3cd" stroke="#2f7d54"/>
+   <text x="210" y="109" font-size="10" text-anchor="middle" fill="#fff" font-weight="700">DNA</text>
+   <text x="210" y="150" font-size="11" text-anchor="middle" fill="#1c5a37" font-weight="700">Nucleus</text>
+   <text x="120" y="83" font-size="9" text-anchor="middle" fill="#1c5a37">Mitochondria</text>
+   <text x="300" y="133" font-size="9" text-anchor="middle" fill="#1c5a37">Ribosome</text>
+   <text x="210" y="30" font-size="12" text-anchor="middle" fill="#1e3a34" font-weight="700">Animal Cell</text></svg>
+   <div class="figcap">Nucleus holds DNA; mitochondria is the powerhouse.</div></div>
+  <h3>1 · The Cell</h3>
+  <ul><li><b>Nucleus</b> — control centre, holds DNA.</li><li><b>Mitochondria</b> — makes ATP energy.</li><li><b>Ribosomes</b> — protein factories.</li><li><b>Plant extra:</b> cell wall, chloroplast, large vacuole.</li></ul>
+  <div class="mnemonic"><b>Hook —</b> "<i>Mighty Mitochondria Make Money (ATP)</i>."</div>
+  <h3>2 · Human Body Systems</h3>
+  <ul><li><b>Digestive:</b> mouth→stomach→small intestine (absorption)→large intestine.</li><li><b>Respiratory:</b> gas exchange at alveoli.</li><li><b>Circulatory:</b> 4-chamber heart; RBC carry O₂ via haemoglobin.</li><li><b>Nervous:</b> brain+spinal cord+nerves; neuron = basic unit.</li></ul>
+  <h3>3 · Deficiency Diseases</h3>
+  <div class="figbox"><table><tr><th>Vitamin</th><th>Deficiency</th></tr><tr><td>A</td><td>Night blindness</td></tr><tr><td>B1</td><td>Beri-beri</td></tr><tr><td>C</td><td>Scurvy</td></tr><tr><td>D</td><td>Rickets</td></tr></table><div class="figcap">Learn all pairs cold — repeated every year.</div></div>
+  <div class="callout"><b>Exam angle:</b> deficiency pairs + disease-causing organisms (malaria→Plasmodium, dengue→virus/Aedes) are guaranteed one-markers.</div>` },
+
+  polity: { kicker: "Mains · GK Core", title: "Polity & Constitution", html: `
+  <p>The Constitution is the rulebook of the Republic. Learn the <b>structure</b> (who has what power) and the <b>rights</b> (what protects citizens).</p>
+  <h3>1 · Making & Preamble</h3>
+  <ul><li>Constituent Assembly (1946); Dr. B.R. Ambedkar chaired the Drafting Committee.</li><li>Adopted 26 Nov 1949, enforced <b>26 Jan 1950</b>.</li><li>Preamble: Sovereign, Socialist, Secular, Democratic, Republic.</li></ul>
+  <div class="mnemonic"><b>42nd Amendment (1976) added:</b> Socialist, Secular, Integrity.</div>
+  <h3>2 · Fundamental Rights (Part III, Art 12–35)</h3>
+  <ul><li>Equality (14–18), Freedom (19–22), Against Exploitation (23–24), Religion (25–28), Cultural/Educational (29–30), Constitutional Remedies (32 — "heart & soul", Ambedkar).</li></ul>
+  <h3>3 · Three Organs</h3>
+  <ul><li><b>Legislature</b> — Parliament (Lok Sabha + Rajya Sabha) makes laws.</li><li><b>Executive</b> — President (head of state), PM (head of govt).</li><li><b>Judiciary</b> — Supreme Court; judicial review protects the Constitution.</li></ul>
+  <div class="callout"><b>Exam angle:</b> Article numbers (14, 19, 21, 32, 356) + which amendment did what are the highest-yield facts.</div>` },
+
+  geography: { kicker: "Prelims + Mains", title: "Geography", html: `
+  <p>Geography = <b>where things are and why</b>. Split it into physical (earth systems) and human/economic (people & resources), with a Telangana layer.</p>
+  <h3>1 · Physical</h3>
+  <ul><li>Earth's layers: crust, mantle, core.</li><li>Atmosphere layers: troposphere→stratosphere (ozone)→mesosphere→thermosphere.</li><li><b>Monsoon:</b> SW monsoon (Jun–Sep) brings most of India's rain.</li></ul>
+  <h3>2 · India & Telangana</h3>
+  <ul><li>Major rivers: Ganga, Brahmaputra, Godavari, Krishna.</li><li><b>Telangana rivers:</b> Godavari & Krishna; projects — Kaleshwaram, Nagarjuna Sagar, Srisailam.</li><li>Deccan plateau; black (regur) soil good for cotton.</li></ul>
+  <div class="mnemonic"><b>Hook —</b> Telangana's lifeline projects: "<i>Kaleshwaram Never Sleeps</i>" → Kaleshwaram, Nagarjuna Sagar, Srisailam.</div>
+  <div class="callout"><b>Exam angle:</b> match river→project→district, and soil→crop. Map-based questions are common.</div>` },
+
+  economy: { kicker: "Mains · GK", title: "Economy", html: `
+  <p>Economics is about <b>how a country uses limited resources</b>. Learn the vocabulary first, then schemes.</p>
+  <h3>1 · Core Terms</h3>
+  <ul><li><b>GDP</b> — total value of goods/services produced in a year.</li><li><b>Inflation</b> — general rise in prices; RBI targets ~4%.</li><li><b>Fiscal deficit</b> — govt spends more than it earns.</li></ul>
+  <h3>2 · Institutions</h3>
+  <ul><li><b>RBI</b> — central bank, controls monetary policy & repo rate.</li><li><b>NITI Aayog</b> — replaced Planning Commission (2015).</li></ul>
+  <h3>3 · Telangana Schemes (high-yield)</h3>
+  <ul><li><b>Rythu Bandhu</b> — investment support to farmers.</li><li><b>Dalit Bandhu</b> — financial empowerment for Dalit families.</li><li>Mission Bhagiratha (drinking water), Mission Kakatiya (tanks).</li></ul>
+  <div class="callout"><b>Exam angle:</b> know the scheme → its purpose → launch year. State schemes carry heavy weight in TGPSC.</div>` },
+
+  telangana: { kicker: "Rank-deciding paper", title: "Telangana Movement & State Formation", html: `
+  <p>This is the <b>most scoring paper</b> in TGPSC. Learn it as three phases leading to statehood on <b>2 June 2014</b>.</p>
+  <div class="figbox"><svg viewBox="0 0 700 90" width="100%" xmlns="http://www.w3.org/2000/svg">
+   <line x1="20" y1="55" x2="680" y2="55" stroke="#7a3b6a" stroke-width="3"/>
+   <circle cx="50" cy="55" r="6" fill="#7a3b6a"/><text x="50" y="38" font-size="10.5" text-anchor="middle" fill="#4a2540" font-weight="700">Police Action</text><text x="50" y="76" font-size="10" text-anchor="middle" fill="#4a4038">1948</text>
+   <circle cx="175" cy="55" r="6" fill="#7a3b6a"/><text x="175" y="38" font-size="10.5" text-anchor="middle" fill="#4a2540" font-weight="700">Gentlemen's Pact</text><text x="175" y="76" font-size="10" text-anchor="middle" fill="#4a4038">1956</text>
+   <circle cx="300" cy="55" r="6" fill="#7a3b6a"/><text x="300" y="38" font-size="10.5" text-anchor="middle" fill="#4a2540" font-weight="700">Jai Telangana</text><text x="300" y="76" font-size="10" text-anchor="middle" fill="#4a4038">1969</text>
+   <circle cx="425" cy="55" r="6" fill="#7a3b6a"/><text x="425" y="38" font-size="10.5" text-anchor="middle" fill="#4a2540" font-weight="700">GO 610</text><text x="425" y="76" font-size="10" text-anchor="middle" fill="#4a4038">1985</text>
+   <circle cx="550" cy="55" r="6" fill="#7a3b6a"/><text x="550" y="38" font-size="10.5" text-anchor="middle" fill="#4a2540" font-weight="700">TRS</text><text x="550" y="76" font-size="10" text-anchor="middle" fill="#4a4038">2001</text>
+   <circle cx="675" cy="55" r="6" fill="#7a3b6a"/><text x="675" y="38" font-size="10.5" text-anchor="middle" fill="#4a2540" font-weight="700">Statehood</text><text x="675" y="76" font-size="10" text-anchor="middle" fill="#4a4038">2014</text>
+  </svg><div class="figcap">Six anchors of the Telangana story.</div></div>
+  <h3>Phase 1 — Foundations (1948–1970)</h3>
+  <ul><li>1948 Police Action → Hyderabad State joins India.</li><li>1956 Gentlemen's Agreement & merger into Andhra Pradesh with safeguards.</li><li>Mulki rules; violation of safeguards → discontent.</li></ul>
+  <h3>Phase 2 — Mobilisation (1969–1990)</h3>
+  <ul><li><b>1969 agitation</b> — "Jai Telangana", student/employee role.</li><li><b>GO 610 (1985)</b> & Jayabharat Reddy committee on service violations.</li></ul>
+  <h3>Phase 3 — Statehood (1991–2014)</h3>
+  <ul><li>TRS formed 2001 (K. Chandrashekar Rao).</li><li>Sustained movement → <b>Telangana formed 2 June 2014</b>, India's 29th state.</li></ul>
+  <div class="callout"><b>Exam angle:</b> memorise every GO number, committee name, and year. Direct one-markers come straight from these.</div>` },
+
+  polephys: { kicker: "General Science", title: "Physics", html: `
+  <p>Physics explains <b>how things move and how energy behaves</b>. Focus on concepts and everyday examples over heavy math.</p>
+  <h3>1 · Motion & Force</h3>
+  <ul><li>Newton's 3 laws: inertia; F=ma; action-reaction.</li><li>Speed = distance/time; velocity has direction; acceleration = change in velocity.</li></ul>
+  <h3>2 · Energy</h3>
+  <ul><li>Kinetic (motion) & potential (position) energy; conservation of energy.</li><li>Work = force × distance; Power = work/time.</li></ul>
+  <h3>3 · Light, Sound, Electricity</h3>
+  <ul><li>Light travels ~3×10⁸ m/s; reflection & refraction (lenses, mirrors).</li><li>Sound needs a medium; faster in solids.</li><li>Ohm's law: V = I × R.</li></ul>
+  <div class="mnemonic"><b>Hook —</b> Newton's 1st law = "<i>lazy law</i>": objects stay lazy unless pushed.</div>
+  <div class="callout"><b>Exam angle:</b> SI units, simple formulas, and "which instrument measures what" (barometer→pressure) are common.</div>` },
+
+  chemistry: { kicker: "General Science", title: "Chemistry", html: `
+  <p>Chemistry is the science of <b>matter and how it changes</b>. Anchor on the atom, the periodic table, and acids/bases.</p>
+  <h3>1 · Matter & Atom</h3>
+  <ul><li>States: solid, liquid, gas (+ plasma).</li><li>Atom = protons + neutrons (nucleus) + electrons (shells).</li><li>Atomic number = protons; mass number = protons + neutrons.</li></ul>
+  <h3>2 · Periodic Table</h3>
+  <ul><li>Elements arranged by atomic number (Mendeleev → modern law).</li><li>Groups (columns) share properties; periods (rows).</li></ul>
+  <h3>3 · Acids, Bases & Everyday Chemistry</h3>
+  <ul><li>Acids: pH < 7 (lemon, vinegar); Bases: pH > 7 (soap); Neutral = 7 (water).</li><li>Common: NaCl (salt), CaCO₃ (limestone), NaHCO₃ (baking soda).</li></ul>
+  <div class="mnemonic"><b>pH hook —</b> "<i>Acids Are Low</i>" (below 7); bases are high.</div>
+  <div class="callout"><b>Exam angle:</b> chemical name↔common name, pH facts, and gas laws recur every year.</div>` },
+
+  reasoning: { kicker: "Prelims · SSC Tier 1", title: "Reasoning & Mental Ability", html: `
+  <p>Reasoning is a <b>scoring section</b> — pure practice, no syllabus to memorise. Learn each pattern type, then drill.</p>
+  <h3>1 · Series</h3>
+  <ul><li>Number series: find the rule (+, ×, squares). e.g. 2,6,12,20 → n²+n.</li><li>Letter series: track position shifts in the alphabet.</li></ul>
+  <h3>2 · Coding-Decoding</h3>
+  <ul><li>Letters shifted by a fixed number, or swapped by a rule. Find the mapping first.</li></ul>
+  <h3>3 · Logic</h3>
+  <ul><li>Blood relations: draw a family tree.</li><li>Directions: sketch N-E-S-W and trace the path.</li><li>Syllogism: use Venn diagrams for "all/some/no".</li></ul>
+  <div class="callout"><b>Exam angle:</b> speed matters most. Time yourself; aim for 90%+ accuracy here.</div>` },
+
+  quant: { kicker: "SSC core · TGPSC abilities", title: "Quantitative Aptitude", html: `
+  <p>Quant is <b>learnable and high-scoring</b>. Master a few formula families, then practise daily.</p>
+  <h3>1 · Arithmetic</h3>
+  <ul><li>Percentage, profit & loss, discount.</li><li>Ratio, proportion, averages.</li><li>Time-speed-distance & time-work.</li></ul>
+  <h3>2 · Interest & Algebra</h3>
+  <ul><li>SI = P×R×T/100; CI compounds each period.</li><li>Basic equations, (a+b)²=a²+2ab+b².</li></ul>
+  <h3>3 · Geometry & DI</h3>
+  <ul><li>Area/perimeter of common shapes; Pythagoras.</li><li>Data interpretation: read tables, bar/pie charts fast.</li></ul>
+  <div class="mnemonic"><b>Hook —</b> "<i>SIMPle interest</i>" = Same each year; compound grows on itself.</div>
+  <div class="callout"><b>Exam angle:</b> memorise squares to 30, cubes to 15, and fraction↔% conversions.</div>` },
+
+  english: { kicker: "Qualifying · SSC", title: "English", html: `
+  <p>English is <b>qualifying in TGPSC</b> but scoring in SSC. Build grammar rules + vocabulary steadily.</p>
+  <h3>1 · Grammar</h3>
+  <ul><li>Tenses, subject-verb agreement, articles, prepositions.</li><li>Error spotting: check number, tense, word form.</li></ul>
+  <h3>2 · Vocabulary</h3>
+  <ul><li>Synonyms, antonyms, idioms, one-word substitution.</li><li>Learn roots (bene=good, mal=bad) to guess new words.</li></ul>
+  <h3>3 · Comprehension</h3>
+  <ul><li>Read the question first, then scan the passage.</li><li>Cloze & para-jumbles: follow logical/grammatical flow.</li></ul>
+  <div class="callout"><b>Exam angle:</b> a few new words daily + one reading passage builds this section painlessly.</div>` },
+
+  current: { kicker: "Read monthly — can't be static", title: "Current Affairs", html: `
+  <p>Current affairs is <b>15–20% of these exams and changes every month</b>, so no fixed page can cover it. Here is the system that works.</p>
+  <h3>1 · Daily (15 min)</h3>
+  <ul><li>Read one national daily (The Hindu / Eenadu) — national, Telangana, economy, schemes.</li><li>Note only exam-relevant facts in one line each.</li></ul>
+  <h3>2 · Monthly</h3>
+  <ul><li>Read a current-affairs magazine or PIB monthly compilation.</li><li>Revise your one-line notes weekly.</li></ul>
+  <h3>3 · What to track</h3>
+  <ul><li>Govt schemes, appointments, awards, sports, summits, indices & reports, Telangana budget & state news.</li></ul>
+  <div class="mnemonic"><b>Free sources:</b> PIB (pib.gov.in), TGPSC site, NCERT for the static base.</div>
+  <div class="callout"><b>Tip:</b> keep a single running notebook of one-line current-affairs facts. Reviewing it weekly beats re-reading news.</div>` }
+};
+
+export const QUIZ = {
+  history: [
+    { q: "The Ramappa Temple (UNESCO site) was built by which dynasty?", o: ["Qutb Shahi", "Kakatiya", "Satavahana", "Chalukya"], a: 1, e: "Built by the Kakatiyas; inscribed by UNESCO in 2021." },
+    { q: "Ashoka embraced Buddhism after which war?", o: ["Panipat", "Kalinga", "Plassey", "Talikota"], a: 1, e: "The Kalinga war (c.261 BCE)." },
+    { q: "India's national emblem (Lion Capital) is from:", o: ["Sanchi", "Sarnath", "Bodh Gaya", "Amaravati"], a: 1, e: "The Sarnath Lion Capital, erected by Ashoka." }
+  ],
+  biology: [
+    { q: "Which organelle is the 'powerhouse of the cell'?", o: ["Nucleus", "Ribosome", "Mitochondria", "Vacuole"], a: 2, e: "Mitochondria produce ATP energy." },
+    { q: "Deficiency of Vitamin C causes:", o: ["Rickets", "Scurvy", "Beri-beri", "Night blindness"], a: 1, e: "Vitamin C deficiency → scurvy." },
+    { q: "Malaria is caused by:", o: ["Virus", "Bacteria", "Plasmodium", "Fungus"], a: 2, e: "Plasmodium, via female Anopheles mosquito." }
+  ],
+  polity: [
+    { q: "Which amendment added 'Socialist Secular' to the Preamble?", o: ["42nd", "44th", "1st", "73rd"], a: 0, e: "The 42nd Amendment (1976)." },
+    { q: "The Constitution came into force on:", o: ["15 Aug 1947", "26 Nov 1949", "26 Jan 1950", "2 Oct 1950"], a: 2, e: "Enforced 26 January 1950 (Republic Day)." }
+  ],
+  telangana: [
+    { q: "Telangana state was formed on:", o: ["1 Nov 1956", "2 Jun 2014", "15 Aug 1947", "1 Jul 2014"], a: 1, e: "29th state, on 2 June 2014." },
+    { q: "GO 610 relates to:", o: ["Land reforms", "Service rule violations", "River water", "Education"], a: 1, e: "GO 610 (1985) addressed employment/service rule violations in Telangana." }
+  ],
+  geography: [
+    { q: "Which two major rivers flow through Telangana?", o: ["Ganga & Yamuna", "Godavari & Krishna", "Narmada & Tapi", "Kaveri & Tungabhadra"], a: 1, e: "Godavari and Krishna are Telangana's main rivers." }
+  ],
+  chemistry: [
+    { q: "The pH of a neutral solution (pure water) is:", o: ["0", "7", "14", "1"], a: 1, e: "pH 7 is neutral; below 7 acidic, above 7 basic." }
+  ],
+  polephys: [
+    { q: "Ohm's law is expressed as:", o: ["V=IR", "F=ma", "E=mc²", "PV=nRT"], a: 0, e: "Voltage = Current × Resistance." }
+  ]
+};
+
+export const BOOKS = {
+  tgpsc1: [{ s: "Telangana Movement", b: "Telugu Akademi — Telangana History & Movement; TGPSC study material", l: "https://www.tgpsc.gov.in" }, { s: "Polity", b: "M. Laxmikanth — Indian Polity", l: "" }, { s: "Modern History", b: "Bipan Chandra — India's Struggle for Independence", l: "" }, { s: "Geography", b: "NCERT 6–12 + G.C. Leong", l: "" }, { s: "Economy", b: "Ramesh Singh — Indian Economy", l: "" }, { s: "Science", b: "NCERT Science 6–10", l: "" }],
+  tgpsc2: [{ s: "All papers", b: "Telugu Akademi Group 2 material (Telugu/English)", l: "https://www.tgpsc.gov.in" }, { s: "Telangana Movement", b: "Telangana Movement & State Formation guide", l: "" }, { s: "Polity/Society", b: "Laxmikanth + NCERT Sociology basics", l: "" }, { s: "Economy", b: "Telangana Socio-Economic Outlook (state report)", l: "" }],
+  tgpsc3: [{ s: "Paper I GS", b: "Telugu Akademi General Studies; Lucent's GK", l: "https://www.tgpsc.gov.in" }, { s: "Abilities", b: "R.S. Aggarwal — Reasoning", l: "" }, { s: "Subject", b: "Post-specific degree-level textbooks", l: "" }],
+  ssc: [{ s: "Quant", b: "R.S. Aggarwal — Quantitative Aptitude", l: "https://ssc.gov.in" }, { s: "Reasoning", b: "R.S. Aggarwal — Verbal & Non-Verbal Reasoning", l: "" }, { s: "English", b: "Wren & Martin; Norman Lewis — Word Power Made Easy", l: "" }, { s: "GK", b: "Lucent's General Knowledge", l: "" }, { s: "Papers", b: "Kiran's SSC Previous Year Papers", l: "https://ssc.gov.in" }]
+};
+
+export const FREE_LINKS = [
+  { t: "NCERT textbooks (free PDF)", u: "https://ncert.nic.in/textbook.php" },
+  { t: "TGPSC — notifications, syllabus & previous papers", u: "https://www.tgpsc.gov.in" },
+  { t: "SSC — exams & question papers", u: "https://ssc.gov.in" },
+  { t: "PIB — schemes & current affairs", u: "https://pib.gov.in" },
+  { t: "Telangana state portal", u: "https://www.telangana.gov.in" }
+];
+
+export const PYQ = {
+  tgpsc1: { note: "TGPSC publishes previous Group 1 prelims & mains papers. Solving 5+ years is the single highest-return activity.", links: [["TGPSC official previous papers", "https://www.tgpsc.gov.in"]] },
+  tgpsc2: { note: "Group 2 is objective across 4 papers. Practise recent papers under a 2.5-hr timer with 0.25 negative marking to build accuracy.", links: [["TGPSC official previous papers", "https://www.tgpsc.gov.in"]] },
+  tgpsc3: { note: "Group 3 Paper 1 & 2 were conducted Nov 2024 — use those official papers plus Group 2 papers for Telangana practice.", links: [["TGPSC official previous papers", "https://www.tgpsc.gov.in"]] },
+  ssc: { note: "SSC releases CGL/CHSL papers with answer keys after every cycle. Solve last 8–10 years by section.", links: [["SSC official papers & keys", "https://ssc.gov.in"]] }
+};
+
+export const PLAN = [
+  ["6 months out", "Foundation", "NCERT 6–10 for History, Geography, Polity, Science. One subject block/day. Build the vocabulary of each subject.", "#2f7d54"],
+  ["4 months out", "Standard books", "Laxmikanth, Ramesh Singh, Telangana movement material. Start daily current affairs + note-making.", "#3a6ea5"],
+  ["2 months out", "Practice + past papers", "Daily quiz per subject, previous-year papers, weekly full mock. Log weak areas.", "#b8862f"],
+  ["Final month", "Revision + speed", "Revise only your own notes + mnemonics. Full-length timed mocks every 2 days. Sleep well.", "#c25a3a"]
+];

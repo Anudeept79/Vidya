@@ -1,0 +1,51 @@
+# Vidya Kendra — TGPSC + SSC Study Desk
+
+A free study companion for Telangana (TGPSC Group 1/2/3) and Central (SSC CGL/CHSL) government exams. Built with React + Vite.
+
+Includes: full syllabus for all 4 tracks, illustrated notes for all 12 subjects, practice quizzes, past-paper guidance, a current-affairs system, a daily study plan, and a progress tracker (saved in your browser).
+
+> Honest note: this is a genuine study tool, **not a guarantee of selection**. Clearing these exams needs months of consistent effort.
+
+---
+
+## Deploy to Vercel (easiest — no coding)
+
+**Option A — drag & drop (fastest)**
+1. Run the build locally: `npm install` then `npm run build`. This creates a `dist/` folder.
+2. Go to https://vercel.com → sign up (free) → **Add New → Project → Deploy** → drag the whole project folder in.
+3. Vercel auto-detects Vite. Click **Deploy**. Done — you get a public link.
+
+**Option B — from GitHub (recommended for updates)**
+1. Create a new repo on GitHub and upload all these files.
+2. On Vercel: **Add New → Project → Import** your repo.
+3. Framework preset: **Vite** (auto-detected). Build command `npm run build`, output `dist`.
+4. Click **Deploy**. Every future push auto-updates the live site.
+
+That's it. The site is 100% static — no API keys, no cost, no risk.
+
+---
+
+## Run locally
+```bash
+npm install
+npm run dev      # open the printed localhost URL
+npm run build    # production build into dist/
+npm run preview  # preview the production build
+```
+
+## 100% free — no API keys, no billing, ever
+
+This app has no paid services and no API keys. It's fully static: everything runs in the browser and costs you nothing to host or share. The "Study Builder" tab is a free launcher into the built-in notes and quizzes — there is no AI generation and nothing that can bill you.
+
+If you ever want live AI generation later, it would need a paid API and a secure backend — ask then, and weigh the cost. For now, this is genuinely free forever.
+
+## Run locally
+```bash
+npm install
+npm run dev      # open the printed localhost URL
+```
+
+## Customize
+- Content lives in `src/data.js` (subjects, syllabus, notes, quizzes, books).
+- Styling is in `src/styles.css`.
+- Layout/logic in `src/App.jsx`.
