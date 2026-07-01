@@ -1,100 +1,312 @@
-:root{
-  --ink:#1a1410;--ink-soft:#4a4038;--paper:#f6f0e6;--paper-2:#efe6d6;
-  --card:#fffdf9;--line:#e0d4c0;--gold:#b8862f;--gold-2:#d4a94a;
-  --deep:#1e3a34;--deep-2:#2d5248;--clay:#c25a3a;--sky:#3a6ea5;
-  --ok:#2f7d54;--bad:#c0392b;
-  --shadow:0 2px 0 rgba(26,20,16,.06),0 12px 30px -12px rgba(26,20,16,.28);
-  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+import { useState, useEffect } from 'react'
+import { EXAMS, SUBJECTS, SYLLABUS, NOTES, QUIZ, BOOKS, FREE_LINKS, PYQ, PLAN } from './data.js'
+
+const NAV = [
+  ['home', 'Home'], ['syllabus', 'Syllabus'], ['books', 'Books'],
+  ['practice', 'Practice'], ['pyq', 'Past Papers'], ['current', 'Current Affairs'],
+  ['builder', 'Study Builder'], ['plan', 'Plan & Tracker']
+]
+
+function useProgress() {
+  const [progress, setProgress] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('vk_progress') || '{}') } catch { return {} }
+  })
+  useEffect(() => {
+    try { localStorage.setItem('vk_progress', JSON.stringify(progress)) } catch {}
+  }, [progress])
+  const toggle = (id) => setProgress(p => ({ ...p, [id]: !p[id] }))
+  return [progress, toggle]
 }
-*{box-sizing:border-box}html,body{margin:0}
-body{font-family:var(--sans);color:var(--ink);background:radial-gradient(1200px 600px at 100% -10%,#fbf5ea,transparent),var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
-a{color:var(--sky)}
-.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
-header.top{background:linear-gradient(180deg,var(--deep),var(--deep-2));color:#f4ecdd;border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:40}
-.top .wrap{display:flex;align-items:center;gap:16px;padding:12px 18px}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}
-.seal{width:44px;height:44px;border-radius:50%;flex:none;background:radial-gradient(circle at 30% 30%,var(--gold-2),var(--gold));display:grid;place-items:center;color:#1e3a34;font-family:var(--serif);font-weight:700;font-size:20px;box-shadow:inset 0 0 0 3px rgba(255,255,255,.25)}
-.brand h1{font-family:var(--serif);font-size:20px;margin:0;letter-spacing:.3px;font-weight:700}
-.brand .sub{font-size:11.5px;opacity:.8;letter-spacing:2px;text-transform:uppercase}
-.top nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
-.top nav button{background:transparent;border:1px solid transparent;color:#e8dcc6;font:inherit;font-size:13.5px;padding:7px 12px;border-radius:8px;cursor:pointer}
-.top nav button:hover{background:rgba(255,255,255,.08)}
-.top nav button.active{background:var(--gold);color:#20241f;font-weight:600}
-.hero{padding:30px 0 6px}
-.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700}
-.hero h2{font-family:var(--serif);font-size:clamp(26px,5vw,42px);line-height:1.08;margin:8px 0 6px;max-width:20ch}
-.hero p{max-width:62ch;color:var(--ink-soft);margin:0 0 14px}
-.stat-row{display:flex;gap:26px;flex-wrap:wrap;margin-top:12px}
-.stat{display:flex;flex-direction:column}
-.stat b{font-family:var(--serif);font-size:24px;color:var(--deep)}
-.stat span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft)}
-.honest{background:#fff6e2;border:1px solid var(--gold);border-left:5px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 18px;margin:20px 0;font-size:14px}
-.honest b{color:var(--deep)}
-.exam-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 6px}
-.exam-tabs button{font:inherit;font-size:13px;padding:8px 14px;border-radius:999px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink-soft)}
-.exam-tabs button.active{background:var(--deep);color:#f4ecdd;border-color:var(--deep)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px;margin:18px 0 40px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s ease;position:relative;overflow:hidden}
-.card.nohover{cursor:default}
-.card:not(.nohover):hover{transform:translateY(-3px)}
-.card .idx{font-family:var(--serif);font-size:13px;color:var(--gold);font-weight:700}
-.card h3{font-family:var(--serif);margin:6px 0 6px;font-size:20px;line-height:1.15}
-.card p{margin:0;font-size:13px;color:var(--ink-soft)}
-.card .tags{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
-.tag{font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;background:var(--paper-2);color:var(--ink-soft);padding:3px 8px;border-radius:6px;font-weight:600}
-.card .accent{position:absolute;left:0;top:0;bottom:0;width:5px}
-.card .doneflag{position:absolute;top:10px;right:12px;font-size:16px}
-.sec-head{display:flex;align-items:baseline;gap:14px;margin:30px 0 4px}
-.sec-head h2{font-family:var(--serif);font-size:26px;margin:0}
-.sec-head .rule{flex:1;height:1px;background:var(--line)}
-.reader{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;margin:18px 0 44px}
-.reader .banner{background:linear-gradient(135deg,var(--deep),var(--deep-2));color:#f4ecdd;padding:26px 28px}
-.reader .banner .kick{font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-2)}
-.reader .banner h2{font-family:var(--serif);font-size:28px;margin:6px 0 0}
-.reader .body{padding:26px 28px}
-.reader .body h3{font-family:var(--serif);color:var(--deep);font-size:21px;margin:26px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--paper-2)}
-.reader .body h4{font-size:15px;margin:18px 0 6px;color:var(--clay)}
-.reader .body p,.reader .body li{font-size:15px;color:var(--ink)}
-.reader .body ul{padding-left:20px}
-.callout{background:var(--paper);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 16px;margin:16px 0}
-.callout b{color:var(--deep)}
-.mnemonic{background:#fff6e2;border:1px dashed var(--gold);border-radius:10px;padding:12px 16px;margin:16px 0}
-.back{background:transparent;border:1px solid var(--line);border-radius:9px;padding:7px 13px;cursor:pointer;font:inherit;font-size:13px;color:var(--ink-soft)}
-.back:hover{background:var(--paper-2)}
-.figbox{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fffef9;margin:18px 0}
-.figcap{font-size:12px;color:var(--ink-soft);text-align:center;margin-top:8px;font-style:italic}
-.figbox table{width:100%;border-collapse:collapse;font-size:13.5px}
-.figbox th{text-align:left;padding:8px;background:#eaf5ee}
-.figbox td{padding:8px;border-top:1px solid #dfeee4}
-.quiz-q{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
-.quiz-q .qn{font-weight:600;font-size:15px;margin-bottom:10px}
-.opt{display:block;width:100%;text-align:left;font:inherit;font-size:14px;padding:10px 14px;margin:6px 0;border:1px solid var(--line);border-radius:9px;background:var(--card);cursor:pointer;transition:.12s}
-.opt:hover{border-color:var(--gold)}
-.opt.correct{background:#e7f5ec;border-color:var(--ok);color:#1c5a37}
-.opt.wrong{background:#fbeae8;border-color:var(--bad);color:#8f2019}
-.explain{margin-top:10px;font-size:13.5px;color:var(--ink-soft);background:var(--card);border-radius:8px;padding:10px 12px;border-left:3px solid var(--sky)}
-.btn{font:inherit;font-size:14px;font-weight:600;padding:11px 18px;border-radius:10px;cursor:pointer;border:none}
-.btn.primary{background:var(--gold);color:#241d0e}
-.btn.primary:hover{background:var(--gold-2)}
-.btn.ghost{background:var(--card);border:1px solid var(--line);color:var(--ink-soft)}
-.track-btn{font:inherit;font-size:12.5px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink-soft)}
-.track-btn.done{background:#e7f5ec;border-color:var(--ok);color:#1c5a37}
-.prog-bar{height:12px;background:var(--paper-2);border-radius:999px;overflow:hidden;margin:8px 0}
-.prog-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--clay));border-radius:999px;transition:width .4s}
-.gen-wrap{background:linear-gradient(180deg,#fffdf9,#f7efe1);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px;margin:18px 0 44px}
-.gen-wrap h2{font-family:var(--serif);font-size:24px;margin:0 0 4px}
-.gen-wrap .lead{color:var(--ink-soft);font-size:14px;margin:0 0 18px;max-width:70ch}
-.gen-form{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
-.gen-form input{font:inherit;font-size:14px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--card);flex:1;min-width:220px}
-.mode-row{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 0}
-.chip{font:inherit;font-size:13px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink-soft)}
-.chip.active{background:var(--deep);color:#f4ecdd;border-color:var(--deep)}
-.spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--gold);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-3px;margin-right:8px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loading{color:var(--ink-soft);font-size:14px;padding:16px 0}
-.soon{background:linear-gradient(180deg,#fffdf9,#f7efe1);border:1px dashed var(--gold);border-radius:16px;padding:34px 26px;text-align:center;margin:18px 0 44px}
-.soon h2{font-family:var(--serif);font-size:26px;margin:0 0 8px}
-.soon p{color:var(--ink-soft);font-size:14px;max-width:60ch;margin:0 auto 6px}
-footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--ink-soft);font-size:13px}
-@media(max-width:640px){.brand h1{font-size:17px}.reader .banner h2{font-size:22px}}
+
+function ExamTabs({ exam, setExam }) {
+  return (
+    <div className="exam-tabs">
+      {Object.entries(EXAMS).map(([k, v]) => (
+        <button key={k} className={k === exam ? 'active' : ''} onClick={() => setExam(k)}>{v.label}</button>
+      ))}
+    </div>
+  )
+}
+
+function Quiz({ bank }) {
+  const [answered, setAnswered] = useState({})
+  return (
+    <>
+      {bank.map((item, qi) => {
+        const done = answered[qi] !== undefined
+        return (
+          <div className="quiz-q" key={qi}>
+            <div className="qn">{qi + 1}. {item.q}</div>
+            {item.o.map((o, oi) => {
+              let cls = 'opt'
+              if (done && oi === item.a) cls += ' correct'
+              if (done && answered[qi] === oi && oi !== item.a) cls += ' wrong'
+              return (
+                <button key={oi} className={cls}
+                  onClick={() => !done && setAnswered(a => ({ ...a, [qi]: oi }))}>
+                  {String.fromCharCode(65 + oi)}. {o}
+                </button>
+              )
+            })}
+            {done && <div className="explain">{item.e}</div>}
+          </div>
+        )
+      })}
+    </>
+  )
+}
+
+function SubjectDetail({ id, onBack, progress, toggle, goPractice }) {
+  const s = SUBJECTS.find(x => x.id === id)
+  const note = NOTES[id]
+  return (
+    <>
+      <div style={{ margin: '18px 0 6px' }}><button className="back" onClick={onBack}>← All subjects</button></div>
+      <div className="reader">
+        <div className="banner">
+          <div className="kick">{note ? note.kicker : 'Syllabus'}</div>
+          <h2>{note ? note.title : s.name}</h2>
+        </div>
+        <div className="body">
+          {note
+            ? <div dangerouslySetInnerHTML={{ __html: note.html }} />
+            : <><p>{s.blurb}</p><h3>Syllabus map</h3><ul>{(SYLLABUS[id] || []).map((t, i) => <li key={i}>{t}</li>)}</ul></>}
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 22, alignItems: 'center' }}>
+            {QUIZ[id] && <button className="btn ghost" onClick={() => goPractice(id)}>Attempt quiz</button>}
+            <button className={'track-btn' + (progress[id] ? ' done' : '')} onClick={() => toggle(id)}>
+              {progress[id] ? '✓ Marked read' : 'Mark as read'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default function App() {
+  const [exam, setExam] = useState('tgpsc1')
+  const [view, setView] = useState('home')
+  const [openSub, setOpenSub] = useState(null)
+  const [quizSub, setQuizSub] = useState(null)
+  const [progress, toggle] = useProgress()
+
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }, [view, openSub])
+
+  const subs = SUBJECTS.filter(s => s.exam.includes(exam))
+  const goto = (v) => { setOpenSub(null); setQuizSub(null); setView(v) }
+  const goPractice = (id) => { setOpenSub(null); setView('practice'); setQuizSub(id) }
+
+  function SubjectCards() {
+    return (
+      <div className="grid">
+        {subs.map((s, i) => (
+          <div className="card" key={s.id} onClick={() => setOpenSub(s.id)}>
+            <div className="accent" style={{ background: s.accent }}></div>
+            {progress[s.id] && <div className="doneflag">✅</div>}
+            <div className="idx">{String(i + 1).padStart(2, '0')}</div>
+            <h3>{s.name}</h3><p>{s.blurb}</p>
+            <div className="tags">{s.tags.map(t => <span className="tag" key={t}>{t}</span>)}</div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  let content
+  if (openSub) {
+    content = <SubjectDetail id={openSub} onBack={() => setOpenSub(null)} progress={progress} toggle={toggle} goPractice={goPractice} />
+  } else if (view === 'home') {
+    const total = subs.length, done = subs.filter(s => progress[s.id]).length
+    content = (
+      <>
+        <section className="hero">
+          <div className="eyebrow">From zero to exam-ready</div>
+          <h2>The complete desk for Telangana & Central government exams.</h2>
+          <p>Every subject in the official syllabus — illustrated notes, practice papers, past-paper links, a current-affairs system and a daily study plan. Free forever, one page, open it daily.</p>
+          <div className="stat-row">
+            <div className="stat"><b>{SUBJECTS.length}</b><span>Subjects</span></div>
+            <div className="stat"><b>4</b><span>Exam tracks</span></div>
+            <div className="stat"><b>{done}/{total}</b><span>Marked read</span></div>
+          </div>
+        </section>
+        <div className="honest"><b>An honest promise:</b> this covers <b>every topic in the official TGPSC & SSC syllabus</b> and gives real, structured preparation. It is <b>not a guarantee of selection</b> — these exams pick a few from lakhs, and clearing them takes months of daily effort, practice papers and revision. Share it as a genuine study companion, and it will genuinely help.</div>
+        <ExamTabs exam={exam} setExam={setExam} />
+        <div className="callout"><b>{EXAMS[exam].label}:</b> {EXAMS[exam].pattern}</div>
+        <div className="sec-head"><h2>Subjects</h2><div className="rule"></div></div>
+        <p style={{ color: 'var(--ink-soft)', fontSize: 14, margin: 0 }}>Every subject has full illustrated notes + quiz. Tap to open; mark it read to track progress (saved on this device).</p>
+        <SubjectCards />
+      </>
+    )
+  } else if (view === 'syllabus') {
+    content = (
+      <>
+        <div className="sec-head"><h2>Complete Syllabus</h2><div className="rule"></div></div>
+        <ExamTabs exam={exam} setExam={setExam} />
+        <div className="callout"><b>Papers / stages:</b><ul style={{ margin: '8px 0 0' }}>{EXAMS[exam].stages.map((s, i) => <li key={i}>{s}</li>)}</ul></div>
+        <div className="honest"><b>Coverage assurance:</b> every subject below maps to the official {EXAMS[exam].label} syllabus.</div>
+        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(320px,1fr))' }}>
+          {subs.map(s => (
+            <div className="card nohover" key={s.id}>
+              <div className="accent" style={{ background: s.accent }}></div>
+              <h3>{s.name}</h3>
+              <ul style={{ margin: '8px 0 0', paddingLeft: 18, fontSize: 13.5, color: 'var(--ink-soft)' }}>
+                {(SYLLABUS[s.id] || []).map((t, i) => <li key={i}>{t}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </>
+    )
+  } else if (view === 'books') {
+    content = (
+      <>
+        <div className="sec-head"><h2>Books & Free Links</h2><div className="rule"></div></div>
+        <ExamTabs exam={exam} setExam={setExam} />
+        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(300px,1fr))' }}>
+          {BOOKS[exam].map((b, i) => (
+            <div className="card nohover" key={i}>
+              <div className="accent" style={{ background: 'var(--gold)' }}></div>
+              <div className="idx">{b.s}</div><h3 style={{ fontSize: 17 }}>{b.b}</h3>
+              {b.l && <a href={b.l} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13 }}>Official / source ↗</a>}
+            </div>
+          ))}
+        </div>
+        <div className="sec-head"><h2>Free Resources</h2><div className="rule"></div></div>
+        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))' }}>
+          {FREE_LINKS.map((l, i) => (
+            <div className="card nohover" key={i}>
+              <h3 style={{ fontSize: 16 }}>{l.t}</h3>
+              <a href={l.u} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13 }}>{l.u.replace('https://', '')} ↗</a>
+            </div>
+          ))}
+        </div>
+        <div className="callout">Start with the <b>free NCERTs</b> before any paid guide. For Telangana papers, Telugu Akademi material is the standard.</div>
+      </>
+    )
+  } else if (view === 'practice') {
+    const qsubs = subs.filter(s => QUIZ[s.id])
+    content = (
+      <>
+        <div className="sec-head"><h2>Practice Papers</h2><div className="rule"></div></div>
+        <ExamTabs exam={exam} setExam={setExam} />
+        <p style={{ color: 'var(--ink-soft)', fontSize: 14 }}>Pick a subject for its question bank.</p>
+        <div className="grid">
+          {qsubs.map(s => (
+            <div className="card" key={s.id} onClick={() => setQuizSub(s.id)}>
+              <div className="accent" style={{ background: s.accent }}></div>
+              <h3>{s.name}</h3><p>{(QUIZ[s.id] || []).length} ready questions · tap to attempt</p>
+            </div>
+          ))}
+        </div>
+        {quizSub && QUIZ[quizSub] && (
+          <div className="reader">
+            <div className="banner"><div className="kick">Question bank</div><h2>{SUBJECTS.find(s => s.id === quizSub).name}</h2></div>
+            <div className="body"><Quiz bank={QUIZ[quizSub]} /></div>
+          </div>
+        )}
+      </>
+    )
+  } else if (view === 'pyq') {
+    const p = PYQ[exam]
+    content = (
+      <>
+        <div className="sec-head"><h2>Past Question Papers</h2><div className="rule"></div></div>
+        <ExamTabs exam={exam} setExam={setExam} />
+        <div className="honest"><b>Most important step of all.</b> Previous-year papers show real difficulty, repeated topics and question style. Serious aspirants solve 5–10 years under timed conditions — it matters more than any notes.</div>
+        <div className="reader">
+          <div className="banner"><div className="kick">{EXAMS[exam].label}</div><h2>How to use past papers</h2></div>
+          <div className="body">
+            <p>{p.note}</p>
+            <h3>The 4-step method</h3>
+            <ul>
+              <li><b>Solve untimed first</b> — understand each question, mark unknown topics.</li>
+              <li><b>Solve timed next</b> — full paper under the real clock and negative marking.</li>
+              <li><b>Analyse</b> — list every wrong/guessed question; those are revision targets.</li>
+              <li><b>Repeat older years</b> — patterns repeat; recognise them.</li>
+            </ul>
+            <h3>Official sources</h3>
+            <ul>{p.links.map((l, i) => <li key={i}><a href={l[1]} target="_blank" rel="noopener noreferrer">{l[0]} ↗</a></li>)}</ul>
+          </div>
+        </div>
+      </>
+    )
+  } else if (view === 'current') {
+    content = (
+      <div className="reader">
+        <div className="banner"><div className="kick">{NOTES.current.kicker}</div><h2>{NOTES.current.title}</h2></div>
+        <div className="body"><div dangerouslySetInnerHTML={{ __html: NOTES.current.html }} /></div>
+      </div>
+    )
+  } else if (view === 'builder') {
+    content = (
+      <>
+        <div className="sec-head"><h2>Study Builder</h2><div className="rule"></div></div>
+        <ExamTabs exam={exam} setExam={setExam} />
+        <p style={{ color: 'var(--ink-soft)', fontSize: 14, maxWidth: '70ch' }}>
+          Build a focused session in one tap. Pick a subject to jump straight to its illustrated notes, or straight to its quiz. Everything here is fully free and works offline once loaded.
+        </p>
+        <div className="grid">
+          {subs.map(s => (
+            <div className="card nohover" key={s.id}>
+              <div className="accent" style={{ background: s.accent }}></div>
+              {progress[s.id] && <div className="doneflag">✅</div>}
+              <h3>{s.name}</h3>
+              <p>{s.blurb}</p>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
+                <button className="track-btn" onClick={() => setOpenSub(s.id)}>Read notes</button>
+                {QUIZ[s.id] && <button className="track-btn" onClick={() => goPractice(s.id)}>Take quiz</button>}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="callout"><b>Suggested daily session:</b> read one subject's notes (20 min) → take its quiz (20 min) → explain the hardest point aloud in your own words (20 min). Mark it read on the subject page to track progress.</div>
+      </>
+    )
+  } else if (view === 'plan') {
+    const total = subs.length, done = subs.filter(s => progress[s.id]).length
+    const pct = total ? Math.round(done / total * 100) : 0
+    content = (
+      <>
+        <div className="sec-head"><h2>Daily Plan & Progress</h2><div className="rule"></div></div>
+        <ExamTabs exam={exam} setExam={setExam} />
+        <div className="reader" style={{ marginTop: 12 }}>
+          <div className="banner"><div className="kick">{EXAMS[exam].label}</div><h2>Your reading progress</h2></div>
+          <div className="body">
+            <div className="prog-bar"><i style={{ width: pct + '%' }}></i></div>
+            <p style={{ fontSize: 14, color: 'var(--ink-soft)' }}>{done} of {total} subjects marked read ({pct}%). Progress is saved on this device.</p>
+          </div>
+        </div>
+        <p style={{ color: 'var(--ink-soft)', fontSize: 14, maxWidth: '70ch' }}>A sustainable routine layers foundation → practice → revision. Consistency beats intensity.</p>
+        {PLAN.map((p, i) => (
+          <div className="card nohover" key={i} style={{ marginBottom: 14 }}>
+            <div className="accent" style={{ background: p[3] }}></div>
+            <div className="idx">{p[0]}</div><h3>{p[1]}</h3><p>{p[2]}</p>
+          </div>
+        ))}
+        <div className="callout"><b>Daily block (repeat):</b> 20 min read a concept → 20 min apply via quiz → 20 min explain it aloud. Then next subject.</div>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <header className="top">
+        <div className="wrap">
+          <div className="brand">
+            <div className="seal">వి</div>
+            <div><h1>Vidya Kendra</h1><div className="sub">TGPSC · SSC · Complete Desk</div></div>
+          </div>
+          <nav>
+            {NAV.map(([v, label]) => (
+              <button key={v} className={view === v && !openSub ? 'active' : ''} onClick={() => goto(v)}>{label}</button>
+            ))}
+          </nav>
+        </div>
+      </header>
+      <main className="wrap">{content}</main>
+      <footer className="wrap">
+        <div><b>Vidya Kendra</b> — a complete study companion for TGPSC (Group 1/2/3) & SSC (CGL/CHSL). Syllabus reflects the 2026 exam structure. It is a genuine preparation tool, <b>not a guarantee of selection</b> — success needs consistent daily effort. Always cross-check the official notification at <a href="https://www.tgpsc.gov.in" target="_blank" rel="noopener noreferrer">tgpsc.gov.in</a> and <a href="https://ssc.gov.in" target="_blank" rel="noopener noreferrer">ssc.gov.in</a>.</div>
+      </footer>
+    </>
+  )
+}
